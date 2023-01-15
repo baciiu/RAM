@@ -50,6 +50,9 @@ public class RAM implements RandomAccessMachine {
 
         while(!isHalt) {
 
+            if (instructionCount == program.size()-1){
+                return registers[0];
+            }
             Instruction instruction = program.get(instructionCount);
 
 
@@ -95,9 +98,6 @@ public class RAM implements RandomAccessMachine {
                 case Halt -> isHalt = true;
             }
             instructionCount++;
-            if (instructionCount >= program.size()){
-                return registers[0];
-            }
 
         }
         return registers[0];
@@ -106,7 +106,7 @@ public class RAM implements RandomAccessMachine {
     @Override
     public void reset() {
         setTapeContent(new int[]{});
-        numberOfRegisters = 0;
+        numberOfRegisters = 2;
         instructionCount = 0 ;
     }
 
