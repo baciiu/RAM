@@ -12,10 +12,10 @@ public class RAM implements RandomAccessMachine {
     private List<Instruction> program = new ArrayList<>();
     private int instructionCount = 0;
     private boolean isHalt = false;
-    private int[] registers;
+    private int[] registers = new int[]{};
 
     public RAM( int numberOfRegisters ){
-        this.numberOfRegisters = numberOfRegisters + 2;
+        this.numberOfRegisters = numberOfRegisters ;
         registers = new int[numberOfRegisters];
     }
 
@@ -44,7 +44,7 @@ public class RAM implements RandomAccessMachine {
      * If the RAm is at the end of execution, it means it has the instruction "HALT"
      * */
     public int execute() {
-        if (this.numberOfRegisters-2 == 0){
+        if (this.numberOfRegisters == 0){
             return 0;
         }
 
@@ -57,11 +57,11 @@ public class RAM implements RandomAccessMachine {
 
             switch (instruction.Type) {
 
-                case Load -> registers[0] = registers[instruction.Argument];
-                case LoadConstant -> registers[0] = instruction.Argument;
-                case Store -> registers[instruction.Argument] = registers[0];
+                case Load -> registers[0] = registers[instruction.Argument]; // ok
+                case LoadConstant -> registers[0] = instruction.Argument; // ok
+                case Store -> registers[instruction.Argument] = registers[0]; // ok?
 
-                case Read -> registers[0] = tapeContent[instruction.Argument] ;
+                case Read -> registers[0] = tapeContent[registers[instruction.Argument]] ;
                 case Write -> tapeContent[registers[instruction.Argument]] = registers[0];
 
                 case Add -> registers[0] = registers[0] + registers[instruction.Argument];  // ok
@@ -84,16 +84,14 @@ public class RAM implements RandomAccessMachine {
                 case Multiply -> registers[0] = registers[0] * registers[instruction.Argument]; // ok
                 case MultiplyConstant -> registers[0] = registers[0] * instruction.Argument; // ok
 
-                case Half -> registers[0] = registers[0] / 2;
+                case Half -> registers[0] = Math.floorDiv(registers[0],2); // ?
 
-                case Jump -> instructionCount = instruction.Argument;
-                case JumpIfPositive -> {
-                    if (registers[0] > 0) instructionCount = (instruction.Argument - 1 ) ;
-                }
+                case Jump -> instructionCount = instruction.Argument - 2;
 
-                case JumpIfZero -> {
-                    if (registers[0] == 0) instructionCount = (instruction.Argument - 1) ;
-                }
+                case JumpIfPositive -> {if (registers[0] > 0) instructionCount = instruction.Argument - 2 ;}
+
+                case JumpIfZero -> {if (registers[0] == 0) instructionCount = instruction.Argument - 2 ;}
+
                 case Halt -> isHalt = true;
             }
             instructionCount++;
@@ -105,7 +103,7 @@ public class RAM implements RandomAccessMachine {
     @Override
     public void reset() {
         setTapeContent(new int[]{});
-        numberOfRegisters = 2;
+        numberOfRegisters = 0;
         instructionCount = 0 ;
     }
 
