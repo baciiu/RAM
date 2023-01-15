@@ -72,7 +72,7 @@ public interface RandomAccessMachine {
 			Halt
 		}
 
-		public static Type Type;
+		public Type Type;
 		public Integer Argument;
 
 		public Instruction(Type type, Integer argument) {

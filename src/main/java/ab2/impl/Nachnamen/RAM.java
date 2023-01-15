@@ -1,6 +1,7 @@
 package ab2.impl.Nachnamen;
 
 import ab2.RandomAccessMachine;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class RAM implements RandomAccessMachine {
     private int[] registers;
 
     public RAM( int numberOfRegisters ){
-        this.numberOfRegisters = numberOfRegisters;
+        this.numberOfRegisters = numberOfRegisters + 2;
         registers = new int[numberOfRegisters];
     }
 
@@ -43,13 +44,13 @@ public class RAM implements RandomAccessMachine {
      * If the RAm is at the end of execution, it means it has the instruction "HALT"
      * */
     public int execute() {
-        if (this.numberOfRegisters == 0){
+        if (this.numberOfRegisters-2 == 0){
             return 0;
         }
 
         while(!isHalt) {
 
-               Instruction instruction = program.get(instructionCount);
+            Instruction instruction = program.get(instructionCount);
 
 
             switch (instruction.Type) {
@@ -91,10 +92,12 @@ public class RAM implements RandomAccessMachine {
                 case JumpIfZero -> {
                     if (registers[0] == 0) instructionCount = instruction.Argument-1 ;
                 }
-
-                //case Halt -> {isHalt = true;}
+                case Halt -> isHalt = true;
             }
             instructionCount++;
+            if (instructionCount >= program.size()){
+                return registers[0];
+            }
 
         }
         return registers[0];

@@ -17,7 +17,6 @@ public class Ab2Impl implements Ab2 {
     @Override
     public List<Instruction> max() {
         List<Instruction> list = new ArrayList<>();
-        list.add(new Instruction(Instruction.Type.Read,0));
         return list;
     }
 
