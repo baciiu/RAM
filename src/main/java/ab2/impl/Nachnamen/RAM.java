@@ -15,8 +15,8 @@ public class RAM implements RandomAccessMachine {
     private int[] registers = new int[]{};
 
     public RAM( int numberOfRegisters ){
-        this.numberOfRegisters = numberOfRegisters ;
-        registers = new int[numberOfRegisters];
+        this.numberOfRegisters = numberOfRegisters + 1 ;
+        registers = new int[this.numberOfRegisters];
     }
 
     @Override
@@ -44,13 +44,13 @@ public class RAM implements RandomAccessMachine {
      * If the RAm is at the end of execution, it means it has the instruction "HALT"
      * */
     public int execute() {
-        if (this.numberOfRegisters == 0){
+        if (this.numberOfRegisters -1 == 0){
             return 0;
         }
 
         while(!isHalt) {
 
-            if (instructionCount == program.size()-1){
+            if (instructionCount == program.size()){
                 return registers[0];
             }
             Instruction instruction = program.get(instructionCount);
@@ -61,6 +61,8 @@ public class RAM implements RandomAccessMachine {
                 case LoadConstant -> registers[0] = instruction.Argument; // ok
                 case Store -> registers[instruction.Argument] = registers[0]; // ok?
 
+                // LOAD 1 : R[0] = R[1]
+                // READ 1 : R[0] = T[R[1]]
                 case Read -> registers[0] = tapeContent[registers[instruction.Argument]] ;
                 case Write -> tapeContent[registers[instruction.Argument]] = registers[0];
 
@@ -103,7 +105,7 @@ public class RAM implements RandomAccessMachine {
     @Override
     public void reset() {
         setTapeContent(new int[]{});
-        numberOfRegisters = 0;
+        numberOfRegisters = 1;
         instructionCount = 0 ;
     }
 
