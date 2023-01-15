@@ -55,14 +55,13 @@ public class RAM implements RandomAccessMachine {
             }
             Instruction instruction = program.get(instructionCount);
 
-
             switch (instruction.Type) {
 
                 case Load -> registers[0] = registers[instruction.Argument];
                 case LoadConstant -> registers[0] = instruction.Argument;
                 case Store -> registers[instruction.Argument] = registers[0];
 
-                case Read -> registers[0] = tapeContent[registers[instruction.Argument]] ;
+                case Read -> registers[0] = tapeContent[instruction.Argument] ;
                 case Write -> tapeContent[registers[instruction.Argument]] = registers[0];
 
                 case Add -> registers[0] = registers[0] + registers[instruction.Argument];  // ok
@@ -89,11 +88,11 @@ public class RAM implements RandomAccessMachine {
 
                 case Jump -> instructionCount = instruction.Argument;
                 case JumpIfPositive -> {
-                    if (registers[0] > 0) instructionCount = instruction.Argument-1 ;
+                    if (registers[0] > 0) instructionCount = (instruction.Argument - 1 ) ;
                 }
 
                 case JumpIfZero -> {
-                    if (registers[0] == 0) instructionCount = instruction.Argument-1 ;
+                    if (registers[0] == 0) instructionCount = (instruction.Argument - 1) ;
                 }
                 case Halt -> isHalt = true;
             }
