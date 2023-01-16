@@ -74,63 +74,63 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public List<Instruction> hasPath() {
-        List<Instruction> list = new ArrayList<>(47);
+        List<Instruction> list = new ArrayList<>(46);
 
-        list.add(0, new Instruction(LoadConstant, 0));
-        list.add(1, new Instruction(LoadConstant, 3)); // maybe 4, loop counter, stored in register 4
-        list.add(2, new Instruction(JumpIfZero, 47));
-        list.add(3, new Instruction(SubtractConstant, 1));
-        list.add(4, new Instruction(Store, 4));
+        list.add(0, new Instruction(LoadConstant, 3)); // maybe 4, loop counter, stored in register 4
+        list.add(1, new Instruction(JumpIfZero, 46));
+        list.add(2, new Instruction(SubtractConstant, 1));
+        list.add(3, new Instruction(Store, 4));
 
-        list.add(5, new Instruction(Load, 1));
-        list.add(6, new Instruction(AddConstant, 1));
-        list.add(7, new Instruction(Store, 1));
-        list.add(8, new Instruction(Read, 1));
+        list.add(4, new Instruction(Load, 1));
+        list.add(5, new Instruction(AddConstant, 1));
+        list.add(6, new Instruction(Store, 1));
+        list.add(7, new Instruction(Read, 1));
 
-        list.add(9, new Instruction(JumpIfZero, 14));
-        list.add(10, new Instruction(Load, 2));
-        list.add(11, new Instruction(AddConstant, 1));
-        list.add(12, new Instruction(Store, 2));
+        list.add(8, new Instruction(JumpIfZero, 13));
+        list.add(9, new Instruction(Load, 2));
+        list.add(10, new Instruction(AddConstant, 1));
+        list.add(11, new Instruction(Store, 2));
 
-        list.add(13, new Instruction(Load, 1));
-        list.add(14, new Instruction(AddConstant, 1));
-        list.add(15, new Instruction(Store, 1));
-        list.add(16, new Instruction(Read, 1));
+        list.add(12, new Instruction(Load, 1));
+        list.add(13, new Instruction(AddConstant, 1));
+        list.add(14, new Instruction(Store, 1));
+        list.add(15, new Instruction(Read, 1));
 
-        list.add(17, new Instruction(JumpIfZero, 23));
-        list.add(18, new Instruction(Load, 3));
-        list.add(19, new Instruction(AddConstant, 1));
-        list.add(20, new Instruction(Store, 3));
-        list.add(21, new Instruction(Load, 1));
-        list.add(22, new Instruction(AddConstant, 1));
-        list.add(23, new Instruction(Store, 1));
-        list.add(24, new Instruction(Read, 1));
+        list.add(16, new Instruction(JumpIfZero, 21));
+        list.add(17, new Instruction(Load, 3));
+        list.add(18, new Instruction(AddConstant, 1));
+        list.add(19, new Instruction(Store, 3));
+        list.add(20, new Instruction(Load, 1));
+        list.add(21, new Instruction(AddConstant, 1));
+        list.add(22, new Instruction(Store, 1));
+        list.add(23, new Instruction(Read, 1));
 
-        list.add(25, new Instruction(JumpIfPositive, 46));
+        list.add(24, new Instruction(JumpIfPositive, 46));
 
-        list.add(26, new Instruction(Load, 2));
-        list.add(27, new Instruction(JumpIfZero, 37));
-        list.add(28, new Instruction(SubtractConstant, 1));
-        list.add(29, new Instruction(JumpIfPositive, 37));
-        list.add(30, new Instruction(AddConstant, 2));
-        list.add(31, new Instruction(Store, 2));
-        list.add(32, new Instruction(LoadConstant, 4));
-        list.add(33, new Instruction(Store, 1));
-        list.add(34, new Instruction(Load, 4));
-        list.add(35, new Instruction(Jump, 3));
+        list.add(25, new Instruction(Load, 2));
+        list.add(26, new Instruction(JumpIfZero, 36));
+        list.add(27, new Instruction(SubtractConstant, 1));
+        list.add(28, new Instruction(JumpIfPositive, 36));
+        list.add(29, new Instruction(AddConstant, 2));
+        list.add(30, new Instruction(Store, 2));
+        list.add(31, new Instruction(LoadConstant, 4));
+        list.add(32, new Instruction(Store, 1));
+        list.add(33, new Instruction(Load, 4));
+        list.add(34, new Instruction(Jump, 2));
 
-        list.add(36, new Instruction(Load, 3));
-        list.add(37, new Instruction(JumpIfZero, 47));
-        list.add(38, new Instruction(SubtractConstant, 1));
-        list.add(39, new Instruction(JumpIfPositive, 47));
-        list.add(40, new Instruction(AddConstant, 2));
-        list.add(41, new Instruction(Store, 3));
-        list.add(42, new Instruction(LoadConstant, 8));
-        list.add(43, new Instruction(Store, 1));
-        list.add(44, new Instruction(Load, 4));
-        list.add(45, new Instruction(Jump, 3));
+        list.add(35, new Instruction(Load, 3));
+        list.add(36, new Instruction(JumpIfZero, 46));
+        list.add(37, new Instruction(SubtractConstant, 1));
+        list.add(38, new Instruction(JumpIfPositive, 46));
+        list.add(39, new Instruction(AddConstant, 2));
+        list.add(40, new Instruction(Store, 3));
+        list.add(41, new Instruction(LoadConstant, 8));
+        list.add(42, new Instruction(Store, 1));
+        list.add(43, new Instruction(Load, 4));
+        list.add(44, new Instruction(Jump, 2));
 
-        list.add(46, new Instruction(Halt, null));
+        list.add(45, new Instruction(Halt, null));
+
         return list;
     }
 }
