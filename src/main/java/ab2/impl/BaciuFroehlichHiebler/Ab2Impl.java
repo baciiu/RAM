@@ -74,7 +74,7 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public List<Instruction> hasPath() {
-        List<Instruction> list = new ArrayList<>(46);
+        List<Instruction> list = new ArrayList<>(47);
 
         list.add(0, new Instruction(LoadConstant, 3)); // maybe 4, loop counter, stored in register 4
         list.add(1, new Instruction(JumpIfZero, 46));
@@ -128,7 +128,6 @@ public class Ab2Impl implements Ab2 {
         list.add(42, new Instruction(Store, 1));
         list.add(43, new Instruction(Load, 4));
         list.add(44, new Instruction(Jump, 2));
-
         list.add(45, new Instruction(Halt, null));
 
         return list;
