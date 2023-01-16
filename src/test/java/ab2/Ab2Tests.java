@@ -1,26 +1,15 @@
 package ab2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import ab2.impl.Nachnamen.Ab2Impl;
 import ab2.RandomAccessMachine.Instruction;
 import ab2.RandomAccessMachine.Instruction.Type;
+import ab2.impl.BaciuFroehlichHiebler.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Ab2Tests {
 
@@ -161,8 +150,7 @@ public class Ab2Tests {
 
     @Test
     public void testDiv() {
-        RandomAccessMachine m = factory.createRAM(4);
-        m.setProgram(factory.div());
+        RandomAccessMachine m = factory.createRAM(4);m.setProgram(factory.div());
         m.setTapeContent(new int[] { 10, 3 });
         assertEquals(3, m.execute());
 

@@ -1,4 +1,4 @@
-package ab2.impl.Nachnamen;
+package ab2.impl.BaciuFroehlichHiebler;
 
 import ab2.Ab2;
 import ab2.RandomAccessMachine;
@@ -13,7 +13,7 @@ public class Ab2Impl implements Ab2 {
 
     @Override
     public RandomAccessMachine createRAM(int numberOfRegisters) {
-        return new RAM(numberOfRegisters);
+        return new ab2.impl.Nachnamen.RAM(numberOfRegisters);
     }
 
     @Override
